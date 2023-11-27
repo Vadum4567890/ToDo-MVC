@@ -1,0 +1,26 @@
+﻿.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.btn {
+    margin: 10px 0;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-primary {
+    width: 300px;
+    margin-left:50px;
+}

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ToDo.Models.Task>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="welcome">
+    <h1>Welcome to ToDo App</h1>
+</div>
+
+<div class="form-group">
+    <label for="sortOrder">Sort Order:</label>
+    <select id="sortOrder" class="form-control">
+        <option value="asc">A-Z</option>
+        <option value="desc">Z-A</option>
+        <option value="oldest">Oldest First</option>
+        <option value="newest">Newest First</option>
+    </select>
+
+    <button id="filterButton" class="btn btn-primary">Sort</button>
+</div>
+
+
+<div class="card-deck">
+    @foreach (var item in Model)
+    {
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">@item.Description</p>
+                <ul class="list-unstyled">
+                    <li>@Html.DisplayNameFor(model => item.StartDate): @Html.DisplayFor(modelItem => item.StartDate)</li>
+                    <li>@Html.DisplayNameFor(model => item.EndDate): @Html.DisplayFor(modelItem => item.EndDate)</li>
+                    <li>@Html.DisplayNameFor(model => item.IsCompleted): @Html.DisplayFor(modelItem => item.IsCompleted)</li>
+                </ul>
+                <div class="btn-group" role="group">
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#filterButton').click(function () {
+                var sortOrder = $('#sortOrder').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Tasks/SortTasks',
+                    data: { sortOrder: sortOrder },
+                    success: function (data) {
+                        // Update the task list with sorted data
+                        $('body').html(data);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log(xhr.responseText);
+                        alert('An error occurred while sorting tasks. See the console for details.');
+                    }
+                });
+            });
+        });
+    </script>
+}

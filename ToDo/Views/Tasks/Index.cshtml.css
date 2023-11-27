@@ -1,0 +1,38 @@
+﻿
+.card {
+    width: 300px;
+    display: flex;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+.card-deck{
+    display: flex;
+    gap: 30px;
+    flex-wrap:wrap;
+}
+.btn-group {
+    display:flex;
+    gap:20px;
+    flex-wrap: wrap;
+}
+
+.welcome {
+    display:flex;
+    justify-content:center;
+    padding: 30px;
+}
+
+.form-control {
+    width: 50px;
+}
+.form-group {
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    justify-content:flex-end;
+    margin-bottom:20px;
+}
